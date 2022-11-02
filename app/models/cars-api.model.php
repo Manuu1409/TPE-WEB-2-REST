@@ -8,24 +8,18 @@ class CarsModel {
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_ford;charset=utf8', 'root', '');
     }
 
-    /**
-     * Devuelve la lista de tareas completa.
-     */
-    public function getAll() {
-        // 1. abro conexión a la DB
-        // ya esta abierta por el constructor de la clase
+    
+    public function getAllCars() {
 
-        // 2. ejecuto la sentencia (2 subpasos)
-        $query = $this->db->prepare("SELECT * FROM autos");
-        $query->execute();
+      $query = $this->db->prepare("SELECT * FROM autos");
+      $query->execute();
 
-        // 3. obtengo los resultados
-        $cars = $query->fetchAll(PDO::FETCH_OBJ); // devuelve un arreglo de objetos
+        $cars = $query->fetchAll(PDO::FETCH_OBJ); // arreglo
         
         return $cars;
     }
 
-    public function get($id) {
+    public function getCar($id) {
         $query = $this->db->prepare("SELECT * FROM autos WHERE id = ?");
         $query->execute([$id]);
         $car = $query->fetch(PDO::FETCH_OBJ);
@@ -33,10 +27,7 @@ class CarsModel {
         return $car;
     }
 
-    /**
-     * Inserta una tarea en la base de datos.
-     */
-    public function insert($name, $date, $colour, $priority) {
+    public function insertCar($name, $date, $colour, $priority) {    //agrega auto
         $query = $this->db->prepare("INSERT INTO autos (nombre, fecha, color, prioridad) VALUES (?, ?, ?, ?)");
         $query->execute([$name, $date, $colour, $priority]);
 
@@ -44,10 +35,8 @@ class CarsModel {
     }
 
 
-    /**
-     * Elimina una tarea dado su id.
-     */
-    function delete($id) {
+   
+    function deleteCar($id) {   //elimina auto por id
         $query = $this->db->prepare('DELETE FROM autos WHERE id = ?');
         $query->execute([$id]);
     }
