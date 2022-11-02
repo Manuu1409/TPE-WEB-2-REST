@@ -51,10 +51,10 @@ class CarsApiController {
     public function insertCar($params = null) {
         $car = $this->getData();
 
-        if (empty($car->nombre) || empty($car->fecha) || empty($car->color) || empty($car->prioridad)) {
+        if (empty($car->nombre) || empty($car->fecha) || empty($car->color) || empty($car->prioridad)  ||empty($car->id_categoria_fk)) {
             $this->view->response("Complete los datos", 400);
         } else {
-            $id = $this->model->insertCar($car->nombre, $car->fecha, $car->color, $car->prioridad);
+            $id = $this->model->insertCar($car->nombre, $car->fecha, $car->color, $car->prioridad, $car->id_categoria_fk);
             $car = $this->model->getCar($id);
             $this->view->response($car, 201);
         }

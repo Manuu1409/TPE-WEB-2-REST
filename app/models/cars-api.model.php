@@ -11,7 +11,7 @@ class CarsModel {
     
     public function getAllCars() {
 
-      $query = $this->db->prepare("SELECT * FROM autos");
+      $query = $this->db->prepare("SELECT * FROM autos ORDER BY fecha ASC");
       $query->execute();
 
         $cars = $query->fetchAll(PDO::FETCH_OBJ); // arreglo
@@ -27,13 +27,12 @@ class CarsModel {
         return $car;
     }
 
-    public function insertCar($name, $date, $colour, $priority) {    //agrega auto
-        $query = $this->db->prepare("INSERT INTO autos (nombre, fecha, color, prioridad) VALUES (?, ?, ?, ?)");
-        $query->execute([$name, $date, $colour, $priority]);
+    public function insertCar($name, $date, $colour, $priority, $id_categoria_fk) {    //agrega auto
+        $query = $this->db->prepare("INSERT INTO autos (nombre, fecha, color, prioridad, id_categoria_fk	) VALUES (?, ?, ?, ?, ?)");
+        $query->execute([$name, $date, $colour, $priority, $id_categoria_fk]);
 
         return $this->db->lastInsertId();
     }
-
 
    
     function deleteCar($id) {   //elimina auto por id
