@@ -37,15 +37,29 @@ class CarsApiController {
             $this->view->response("La tarea con el id=$id no existe", 404);
     }
 
+    public function editCar ($params = null) {
+        $id = $params [':ID'];
+        $car = $this->model->getCar($id);
+        //$car = $this->getData();
+        if($car) {
+            $this->model->editCar($id, $car->nombre, $car->fecha, $car->color, $car->prioridad , $car->id_categoria_fk);
+            $this->view->response("El auto se modifico exitosamente", 200);
+        }
+        else {
+            $this->view->response("El auto con la id=$id no existe", 404);
+        }
+    }
+
     public function deleteCar($params = null) {
         $id = $params[':ID'];
 
         $car = $this->model->getCar($id);
         if ($car) {
             $this->model->deleteCar($id);
+            $this->view->response("El auto se borro exitosamente", 200);
             $this->view->response($car);
         } else 
-            $this->view->response("La tarea con el id=$id no existe", 404);
+            $this->view->response("El auto con el id=$id no existe", 404);
     }
 
     public function insertCar($params = null) {
