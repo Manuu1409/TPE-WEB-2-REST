@@ -8,19 +8,19 @@ class CarsModel {
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_ford;charset=utf8', 'root', '');
     }
 
-    
-    function getAllCars() {
+    function getAllCars() {  //trae todos los autos
 
-      $query = $this->db->prepare("SELECT * FROM autos ORDER BY fecha ASC");
-      $query->execute();
+        $query = $this->db->prepare("SELECT * FROM autos ORDER BY fecha ASC");
+        $query->execute();
 
         $cars = $query->fetchAll(PDO::FETCH_OBJ); // arreglo
         
         return $cars;
     }
 
-    function getCar($id) {
-        $query = $this->db->prepare("SELECT * FROM autos WHERE id = ?");
+    function getCar($id) { //trae un auto por su id
+
+        $query = $this->db->prepare("SELECT * FROM autos WHERE id = ?");  
         $query->execute([$id]);
         $car = $query->fetch(PDO::FETCH_OBJ);
         
@@ -34,12 +34,14 @@ class CarsModel {
         return $this->db->lastInsertId();
     }
 
-    function editCar($name, $date, $colour, $priority, $id_categoria_fk, $id) {
-        $query = $this->db->prepare("UPDATE `autos` SET `nombre` = ?, `fecha` = ? `color` = ?, `prioridad` = ?, `id_categoria_fk` = ? WHERE id = ?;");
-        $query->execute([$name, $date, $colour, $priority, $id_categoria_fk, $id]);
+    function editCar($name, $date, $colour, $priority, $id_categoria_fk, $id) {  //update al item
+
+        $query = $this->db->prepare("UPDATE autos SET nombre = ?, fecha = ?, color = ?, prioridad = ?, id_categoria_fk = ? WHERE id = ?");
+        $query->execute([$name, $date, $colour, $priority,$id_categoria_fk, $id]);
     }
    
     function deleteCar($id) {   //elimina auto por id
+        
         $query = $this->db->prepare('DELETE FROM autos WHERE id = ?');
         $query->execute([$id]);
     }

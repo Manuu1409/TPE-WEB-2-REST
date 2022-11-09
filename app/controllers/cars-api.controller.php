@@ -30,7 +30,7 @@ class CarsApiController {
         $id = $params[':ID'];
         $car = $this->model->getCar($id);
 
-        // si no existe devuelvo 404
+        // si no existe devuelvo 404 error
         if ($car)
             $this->view->response($car);
         else 
@@ -40,9 +40,11 @@ class CarsApiController {
     public function editCar ($params = null) {
         $id = $params [':ID'];
         $car = $this->model->getCar($id);
-        //$car = $this->getData();
+        $Newcar = $this->getData();
+        var_dump($car);
+
         if($car) {
-            $this->model->editCar($id, $car->nombre, $car->fecha, $car->color, $car->prioridad , $car->id_categoria_fk);
+            $this->model->editCar($Newcar->nombre, $Newcar->fecha, $Newcar->color, $Newcar->prioridad,$Newcar->id_categoria_fk, $id);
             $this->view->response("El auto se modifico exitosamente", 200);
         }
         else {
@@ -58,8 +60,10 @@ class CarsApiController {
             $this->model->deleteCar($id);
             $this->view->response("El auto se borro exitosamente", 200);
             $this->view->response($car);
-        } else 
+        } 
+        else { 
             $this->view->response("El auto con el id=$id no existe", 404);
+        }
     }
 
     public function insertCar($params = null) {
