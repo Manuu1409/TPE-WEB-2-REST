@@ -41,8 +41,7 @@ class CarsApiController {
         $id = $params [':ID'];
         $car = $this->model->getCar($id);
         $Newcar = $this->getData();
-        var_dump($car);
-
+        
         if($car) {
             $this->model->editCar($Newcar->nombre, $Newcar->fecha, $Newcar->color, $Newcar->prioridad,$Newcar->id_categoria_fk, $id);
             $this->view->response("El auto se modifico exitosamente", 200);
