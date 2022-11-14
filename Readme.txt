@@ -2,7 +2,7 @@
 {
     "id": "1",
     "nombre": "Pick-ip",
-    "fecha": "14/09/2002",
+    "fecha": "2002",
     "color": "Verde",
     "prioridad": "5",
     "id_categoria_fk": "4"
