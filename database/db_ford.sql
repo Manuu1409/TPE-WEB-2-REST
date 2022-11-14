@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-10-2022 a las 23:35:14
+-- Tiempo de generación: 14-11-2022 a las 18:24:50
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.6
 
@@ -43,9 +43,12 @@ CREATE TABLE `autos` (
 INSERT INTO `autos` (`id`, `nombre`, `fecha`, `color`, `prioridad`, `id_categoria_fk`) VALUES
 (8, 'Ranger', 2015, 'Blanco', 1, 1),
 (24, 'Bronco', 2020, 'Marron', 2, 1),
-(30, 'Raptor', 2008, 'blanco', 2, 8),
+(30, 'Raptor', 2009, 'Verde', 3, 8),
 (31, 'Ecosport ', 2015, 'blanco', 2, 2),
-(32, 'territory', 2010, 'Verde', 1, 2);
+(44, 'Corsa', 2020, 'Negro', 5, 1),
+(45, 'Hilux', 2015, 'Blanco', 7, 1),
+(69, 'Zanella', 2000, 'amarillo', 3, 2),
+(72, 'Amarok', 2002, 'Marron', 3, 2);
 
 -- --------------------------------------------------------
 
@@ -64,7 +67,7 @@ CREATE TABLE `categorias` (
 --
 
 INSERT INTO `categorias` (`id`, `nombre`, `descripcion`) VALUES
-(1, 'Off road', 'Aunque el concepto de off road se refiere específicamente a transitar fuera de la carretera, es decir, en caminos diferentes a los carriles pavimentados. La esencia que hay detrás de esta actividad recreativa engloba sentimientos difíciles de describir'),
+(1, 'Off-road', 'Aunque el concepto de off road se refiere específicamente a transitar fuera de la carretera, es decir, en caminos diferentes a los carriles pavimentados. La esencia que hay detrás de esta actividad recreativa engloba sentimientos difíciles de describir'),
 (2, 'SUVS', 'Conocé la nueva SUV de Ford diseñada para maximizar el confort y con amplio espacio interior para disfrutar cualquier viaje: Territory.'),
 (8, 'Escort', 'El Ford Escort es un automóvil del segmento C producido entre 1980 y 2003. Fue el primer auto de tracción delantera de Ford en los Estados Unidos, siendo lanzado en 1981 para sustituir al Ford Pinto así como al Ford Fiesta importado.');
 
@@ -119,7 +122,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `autos`
 --
 ALTER TABLE `autos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`

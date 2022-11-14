@@ -20,8 +20,8 @@ class CarsApiController {
     }
 
     public function getCars() {
-        if (isset($_GET ['sort']) && isset($_GET ['order'])) {
-            if(($_GET ['sort']=="fecha") || ($_GET ['sort']=="FECHA")) {
+        if (isset($_GET ['order'])) {
+            
                 if (($_GET['order']=="asc") || ($_GET['order']=="ASC")) {
                     $cars = $this->model->Upward();
 
@@ -29,7 +29,7 @@ class CarsApiController {
                 elseif (($_GET ['order']=="desc") || ($_GET ['order']=="DESC") ) {
                     $cars = $this->model->Falling(); 
                 }
-            }
+            
         }
         else {
         $cars = $this->model->getAllCars();    

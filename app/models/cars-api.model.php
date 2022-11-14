@@ -28,7 +28,7 @@ class CarsModel {
     }
     function Upward() { 
 
-        $query = $this->db->prepare("SELECT * FROM autos ORDER BY fecha ASC");  
+        $query = $this->db->prepare("SELECT * FROM autos ORDER BY nombre ASC");  
         $query->execute();
         $car = $query->fetchAll(PDO::FETCH_OBJ);
         
@@ -37,7 +37,7 @@ class CarsModel {
     
     function Falling() { 
 
-        $query = $this->db->prepare("SELECT * FROM autos ORDER BY fecha DESC");  
+        $query = $this->db->prepare("SELECT * FROM autos ORDER BY nombre DESC");  
         $query->execute();
         $car = $query->fetchAll(PDO::FETCH_OBJ);
         
