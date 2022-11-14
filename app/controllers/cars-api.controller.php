@@ -27,7 +27,7 @@ class CarsApiController {
 
                 }
                 elseif (($_GET ['order']=="desc") || ($_GET ['order']=="DESC") ) {
-                    $cars = $this->model->falling(); 
+                    $cars = $this->model->Falling(); 
                 }
             }
         }

@@ -28,18 +28,18 @@ class CarsModel {
     }
     function Upward() { 
 
-        $query = $this->db->prepare("SELECT * FROM autos ORDER BY nombre ASC");  
+        $query = $this->db->prepare("SELECT * FROM autos ORDER BY fecha ASC");  
         $query->execute();
-        $car = $query->fetch(PDO::FETCH_OBJ);
+        $car = $query->fetchAll(PDO::FETCH_OBJ);
         
         return $car;
     }
     
-    function falling() { 
+    function Falling() { 
 
-        $query = $this->db->prepare("SELECT * FROM autos ORDER BY nombre DESC");  
+        $query = $this->db->prepare("SELECT * FROM autos ORDER BY fecha DESC");  
         $query->execute();
-        $car = $query->fetch(PDO::FETCH_OBJ);
+        $car = $query->fetchAll(PDO::FETCH_OBJ);
         
         return $car;
     }
