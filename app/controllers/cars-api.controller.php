@@ -12,29 +12,54 @@ class CarsApiController {
         $this->model = new CarsModel();
         $this->view = new ApiView();
         
-        // lee el body del request
-        $this->data = file_get_contents("php://input");
+        $this->data = file_get_contents("php://input"); // lee el body del request
     }
 
     private function getData() {
         return json_decode($this->data);
     }
 
-    public function getCars($params = null) {
-        $cars = $this->model->getAllCars();
-        $this->view->response($cars);
+    public function getCars() {
+        if (isset($_GET ['sort']) && isset($_GET ['order'])) {
+            if(($_GET ['sort']=="fecha") || ($_GET ['sort']=="FECHA")) {
+                if (($_GET['order']=="asc") || ($_GET['order']=="ASC")) {
+                    $cars = $this->model->Upward();
+
+                }
+                elseif (($_GET ['order']=="desc") || ($_GET ['order']=="DESC") ) {
+                    $cars = $this->model->falling(); 
+                }
+            }
+        }
+        else {
+        $cars = $this->model->getAllCars();    
+     }
+      $this->view->response($cars);
     }
 
     public function getCar($params = null) {
-        // obtengo el id del arreglo de params
-        $id = $params[':ID'];
+        
+        $id = $params[':ID']; // obtengo el id del arreglo de params
         $car = $this->model->getCar($id);
 
-        // si no existe devuelvo 404 error
-        if ($car)
+        if ($car) { // si no existe devuelvo 404 error
             $this->view->response($car);
-        else 
+        }
+        else {
             $this->view->response("La tarea con el id=$id no existe", 404);
+        }
+    }
+
+    public function insertCar($params = null) {
+        $car = $this->getData();
+
+        if (empty($car->nombre) || empty($car->fecha) || empty($car->color) || empty($car->prioridad)  ||empty($car->id_categoria_fk)) {
+            $this->view->response("Complete los datos", 400);
+        } else {
+            $id = $this->model->insertCar($car->nombre, $car->fecha, $car->color, $car->prioridad, $car->id_categoria_fk);
+            $car = $this->model->getCar($id);
+            $this->view->response($car, 201);
+        }
     }
 
     public function editCar ($params = null) {
@@ -51,7 +76,10 @@ class CarsApiController {
         }
     }
 
+   
+
     public function deleteCar($params = null) {
+
         $id = $params[':ID'];
 
         $car = $this->model->getCar($id);
@@ -64,17 +92,4 @@ class CarsApiController {
             $this->view->response("El auto con el id=$id no existe", 404);
         }
     }
-
-    public function insertCar($params = null) {
-        $car = $this->getData();
-
-        if (empty($car->nombre) || empty($car->fecha) || empty($car->color) || empty($car->prioridad)  ||empty($car->id_categoria_fk)) {
-            $this->view->response("Complete los datos", 400);
-        } else {
-            $id = $this->model->insertCar($car->nombre, $car->fecha, $car->color, $car->prioridad, $car->id_categoria_fk);
-            $car = $this->model->getCar($id);
-            $this->view->response($car, 201);
-        }
-    }
-
 }
