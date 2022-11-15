@@ -21,4 +21,4 @@ PUT: http://localhost/TPE-WEB-2-REST/api/cars/id
 
 DELETE:http://localhost/TPE-WEB-2-REST/api/cars/id
 
-FILTRAR ASC o DESC: http://localhost/TPE-WEB-2-REST/api/cars?order=
+ASC o DESC: http://localhost/TPE-WEB-2-REST/api/cars?order=
