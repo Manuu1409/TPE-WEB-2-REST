@@ -1,15 +1,19 @@
+ API REST para mostrar autos ford
  
+Importar la base de datos desde PHPMyAdmin (o otros)  database/db_ford
+
+Ejemplo de JSON
+
 {
-    "id": "1",
-    "nombre": "Pick-ip",
-    "fecha": "2002",
-    "color": "Verde",
-    "prioridad": "5",
-    "id_categoria_fk": "4"
-}
+       
+        "nombre": "Bronco",
+        "fecha": "2020",
+        "color": "Marron",
+        "prioridad": "2",
+        "id_categoria_fk": "1"
+    }
 
-
-ENDPOINTS
+ENDPOINTS DE LA API 
 
 GET (FETCH ALL):http://localhost/TPE-WEB-2-REST/api/cars
 
