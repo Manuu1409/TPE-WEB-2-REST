@@ -42,11 +42,11 @@ class CarsApiController {
         $id = $params[':ID']; // obtengo el id del arreglo de params
         $car = $this->model->getCar($id);
 
-        if ($car) { // si no existe devuelvo 404 error
+        if ($car) { 
             $this->view->response($car);
         }
         else {
-            $this->view->response("La tarea con el id=$id no existe", 404);
+            $this->view->response("El auto que quieres ver con el id $id no existe", 404);
         }
     }
 
@@ -72,11 +72,9 @@ class CarsApiController {
             $this->view->response("El auto se modifico exitosamente", 200);
         }
         else {
-            $this->view->response("El auto con la id=$id no existe", 404);
+            $this->view->response("El auto con el id $id que quieres modificar no existe", 404);
         }
     }
-
-   
 
     public function deleteCar($params = null) {
 
@@ -89,7 +87,7 @@ class CarsApiController {
             $this->view->response($car);
         } 
         else { 
-            $this->view->response("El auto con el id=$id no existe", 404);
+            $this->view->response("El auto con el id $id que quieres eliminar no existe ", 404);
         }
     }
 }
