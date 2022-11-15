@@ -2,7 +2,16 @@
  
 Importar la base de datos desde PHPMyAdmin (o otros)  database/db_ford
 
+Ejemplo de JSON
 
+{
+       
+        "nombre": "Bronco",
+        "fecha": "2020",
+        "color": "Marron",
+        "prioridad": "2",
+        "id_categoria_fk": "1"
+    }
 
 ENDPOINTS DE LA API 
 
